@@ -1,0 +1,81 @@
+# DashScope 微调配置文件示例
+# 复制此文件为 finetune_config.yaml 并修改相应配置
+
+# ==================== API 配置 ====================
+# DashScope API Key（必需）
+# 可以在这里设置，或通过环境变量 DASHSCOPE_API_KEY 设置
+api_key: "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# ==================== 模型配置 ====================
+# 基础模型（必需）
+# 可选值: qwen-turbo, qwen-plus, qwen-max 等
+base_model: "qwen-turbo"
+
+# 微调后的模型名称（可选，用于标识）
+model_name: "qwen-turbo-code-data-gen-v1"
+
+# ==================== 数据文件 ====================
+# 训练数据文件路径（必需）
+# 必须是 JSONL 格式，每行一个 JSON 对象
+train_file: "output/dashscope/train.jsonl"
+
+# 验证数据文件路径（可选，但强烈推荐）
+# 用于在训练过程中评估模型性能
+valid_file: "output/dashscope/valid.jsonl"
+
+# ==================== 训练超参数 ====================
+hyperparameters:
+  # 训练轮数（epochs）
+  # 建议值：3-5
+  # - 小数据集（< 1000 条）: 5
+  # - 中等数据集（1000-3000 条）: 3-4
+  # - 大数据集（> 3000 条）: 2-3
+  epochs: 3
+  
+  # 批次大小（batch_size）
+  # 建议值：8-32
+  # 较大的批次大小可以加速训练，但需要更多内存
+  batch_size: 16
+  
+  # 学习率（learning_rate）
+  # 建议值：1e-5 到 5e-5
+  # 较小的学习率更稳定，但训练速度较慢
+  learning_rate: 2e-5
+
+# ==================== 配置说明 ====================
+# 
+# 1. 数据量建议：
+#    - 最少：100 条训练数据
+#    - 推荐：500-2000 条训练数据
+#    - 验证集：训练集的 10-20%
+#
+# 2. 超参数调优建议：
+#    第一次训练：使用默认配置
+#    如果过拟合：减少 epochs 或降低 learning_rate
+#    如果欠拟合：增加 epochs 或提高 learning_rate
+#
+# 3. 成本估算：
+#    训练成本 ≈ 数据条数 × 平均tokens × epochs × 0.008 / 1000 元
+#    示例：1000条 × 200tokens × 3轮 × 0.008 / 1000 ≈ 4.8 元
+#
+# 4. 训练时间估算：
+#    - 500 条数据，3 epochs：约 10-20 分钟
+#    - 2000 条数据，3 epochs：约 30-60 分钟
+#
+# ==================== 使用步骤 ====================
+#
+# 1. 转换数据格式：
+#    python scripts/convert_to_dashscope.py \
+#        output/complete_training/merged_qa_dataset_*_train.alpaca \
+#        -o output/dashscope/train.jsonl
+#
+# 2. 验证数据格式：
+#    python scripts/validate_dashscope_data.py output/dashscope/train.jsonl
+#
+# 3. 开始微调：
+#    python scripts/dashscope_finetune.py scripts/finetune_config.yaml
+#
+# 4. 监控训练（如果中途退出）：
+#    python scripts/monitor_finetune.py <job_id>
+#
+

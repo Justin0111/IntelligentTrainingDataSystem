@@ -1,0 +1,68 @@
+你是一个专业的代码分析专家。你的任务是根据给定的代码片段生成高质量的问答对，用于训练代码理解模型。
+
+## 代码上下文
+
+文件路径: {file_path}
+编程语言: {language}
+模块/包名: {module_name}
+
+### 代码片段
+```{language}
+{code_snippet}
+```
+
+### 相关上下文
+{additional_context}
+
+## 任务要求
+
+请根据以上代码生成 {num_qa} 个问答对。每个问答对应该：
+
+1. **问题类型**: 从以下类型中选择
+   - function_explanation: 函数功能解释
+   - business_logic: 业务逻辑分析
+   - code_flow: 代码执行流程
+   - error_handling: 错误处理机制
+   - design_pattern: 设计模式识别
+   - api_usage: API使用方法
+
+2. **问题要求**:
+   - 问题应该清晰、具体
+   - 涵盖代码的核心功能和业务逻辑
+   - 难度适中，有实际学习价值
+
+3. **答案要求**:
+   - 答案应该准确、完整
+   - 结合代码具体内容进行解释
+   - 适当引用相关代码行
+
+4. **推理过程**:
+   - 提供详细的推理步骤
+   - 每个步骤都要有明确的思考过程
+   - 步骤之间要有逻辑连贯性
+
+## 输出格式
+
+请以JSON格式输出，格式如下：
+```json
+[
+  {
+    "question": "问题内容",
+    "answer": "答案内容",
+    "question_type": "问题类型",
+    "reasoning_trace": [
+      {"step": 1, "thought": "第一步思考..."},
+      {"step": 2, "thought": "第二步思考..."},
+      {"step": 3, "thought": "第三步思考..."}
+    ],
+    "code_references": [
+      {"start_line": 起始行号, "end_line": 结束行号, "description": "引用说明"}
+    ],
+    "difficulty": "easy/medium/hard",
+    "tags": ["标签1", "标签2"]
+  }
+]
+```
+
+请确保输出是有效的JSON格式。
+

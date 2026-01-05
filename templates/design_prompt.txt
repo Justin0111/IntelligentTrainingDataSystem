@@ -1,0 +1,103 @@
+你是一个资深的软件架构师。你的任务是根据给定的代码仓库架构信息和需求，生成一个基于现有架构的设计方案。
+
+## 代码仓库架构信息
+
+### 项目结构
+{project_structure}
+
+### 核心模块说明
+{module_descriptions}
+
+### 现有设计模式
+{existing_patterns}
+
+### 依赖关系
+{dependencies}
+
+## 需求描述
+
+{requirement}
+
+## 任务要求
+
+请生成一个符合现有架构风格的设计方案，包括：
+
+1. **方案概述**:
+   - 简要描述解决方案的核心思路
+   - 说明如何与现有架构集成
+
+2. **组件设计**:
+   - 需要新增的类/模块
+   - 每个组件的职责说明
+   - 组件之间的交互关系
+
+3. **接口设计**:
+   - 主要的API/接口定义
+   - 数据结构设计
+
+4. **集成方案**:
+   - 与现有模块的集成点
+   - 可能需要修改的现有代码
+
+5. **推理过程**:
+   - 详细的设计决策推理
+   - 为什么选择这种方案
+   - 考虑过的其他方案及其优缺点
+
+## 输出格式
+
+请以JSON格式输出，格式如下：
+```json
+{
+  "overview": "方案概述...",
+  "components": [
+    {
+      "name": "组件名称",
+      "type": "class/module/service",
+      "responsibility": "职责描述",
+      "interfaces": [
+        {
+          "name": "方法/接口名",
+          "signature": "签名定义",
+          "description": "功能描述"
+        }
+      ]
+    }
+  ],
+  "data_structures": [
+    {
+      "name": "数据结构名",
+      "fields": [
+        {"name": "字段名", "type": "类型", "description": "描述"}
+      ]
+    }
+  ],
+  "integration_points": [
+    {
+      "target_module": "目标模块",
+      "integration_type": "扩展/修改/调用",
+      "description": "集成说明"
+    }
+  ],
+  "reasoning_trace": [
+    {"step": 1, "thought": "首先分析现有架构..."},
+    {"step": 2, "thought": "识别可复用的模块..."},
+    {"step": 3, "thought": "设计新组件的接口..."},
+    {"step": 4, "thought": "确定集成策略..."},
+    {"step": 5, "thought": "验证方案可行性..."}
+  ],
+  "design_patterns_used": ["使用的设计模式列表"],
+  "trade_offs": [
+    {
+      "decision": "决策内容",
+      "pros": ["优点1", "优点2"],
+      "cons": ["缺点1", "缺点2"]
+    }
+  ],
+  "estimated_complexity": "low/medium/high",
+  "affected_files": ["可能受影响的文件列表"]
+}
+```
+
+请确保输出是有效的JSON格式，并且设计方案切实可行、符合现有架构风格。
+
