@@ -194,21 +194,24 @@ python main.py validate output/datasets/qa_dataset.jsonl --epochs 1
 
 以下是使用本系统生成的训练数据基于阿里Dashscope对 Qwen-turbo模型进行微调后的效果对比示例：
 
-### 测试案例：Session 类的 exists 方法
+---
 
-**问题**：
+## 1. 问题 (Session 类的 exists 方法)
+
 ```
 Session类中的exists方法的作用是什么？
 
 代码上下文：
-```
   exists() {
     return this.username() && this.token();
   }
 ```
 
-**基础模型（qwen-turbo）响应**：
-```
+---
+
+## 2. 基础模型（qwen-turbo）响应
+
+
 在你提供的代码中，`Session` 类中的 `exists()` 方法的作用是 **检查用户是否已经登录或会话是否有效**。
 
 ### 详细解释：
@@ -261,9 +264,10 @@ if (session.exists()) {
   // 用户未登录，跳转到登录页
 }
 ```
-```
 
-**微调后模型响应**：
+
+## 3. 微调后模型响应
+
 ```
 推理过程：
 步骤1: 分析Session类的定义和结构，发现存在一个exists方法。
@@ -288,7 +292,3 @@ exists方法用于检查当前会话是否有效。它通过调用username()和t
 - ✅ 响应更加简洁高效，减少了冗余信息
 - ✅ 保持了代码分析的准确性，同时提升了输出的规范性
 - ✅ 符合项目要求的"包含推理过程"的数据格式
-
-
-
-欢迎提交 Issue 和 Pull Request！
